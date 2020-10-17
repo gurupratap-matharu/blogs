@@ -31,5 +31,7 @@ class PostShare(FormView):
 
     def form_valid(self, form):
         post = get_object_or_404(Post, id=self.kwargs["post_id"], status="published")
-        form.send_email(post=post)
+        uri = self.request.build_absolute_uri(post.get_absolute_url())
+        self.success_url = post.get_absolute_url()
+        form.send_email(title=post.title, uri=uri)
         return super().form_valid(form)

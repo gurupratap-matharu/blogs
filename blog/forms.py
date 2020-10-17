@@ -8,16 +8,16 @@ class EmailPostForm(forms.Form):
     to = forms.EmailField()
     comments = forms.CharField(required=False, widget=forms.Textarea)
 
-    def send_email(self, post):
+    def send_email(self, title, uri):
         from_name = self.cleaned_data["name"]
         from_email = self.cleaned_data["email"]
         to_email = self.cleaned_data["to"]
         comments = self.cleaned_data["comments"]
 
-        subject = "{0} recommends you read {1}".format(from_name, post.title)
+        subject = "{0} recommends you read {1}".format(from_name, title)
         message = "Read {0} at {1}\n{2}'s comments: {3}".format(
-            post.title,
-            post.get_absolute_url(),
+            title,
+            uri,
             from_name,
             comments,
         )
