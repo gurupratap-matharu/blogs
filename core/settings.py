@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # 3rd party
+    "crispy_forms",
     "django_extensions",
     # Local
     "blog.apps.BlogConfig",
