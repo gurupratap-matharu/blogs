@@ -1,0 +1,10 @@
+{% block title %}Share a post{% endblock title %}
+
+{% block content %}
+<h1>Share "{{ post.title }}" by e-mail</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send E-mail</button>
+</form>
+{% endblock content %}
