@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from blog.models import Post
+from blog.models import Comment, Post
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -14,3 +14,15 @@ class PostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Post, PostAdmin)
+
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ("name", "email", "post", "created", "active")
+    list_filter = ("active", "created", "updated")
+    list_editable = ("active",)
+    search_fields = ("name", "email", "body")
+    date_heirarchy = "created"
+    ordering = ("-active", "created")
+
+
+admin.site.register(Comment, CommentAdmin)
