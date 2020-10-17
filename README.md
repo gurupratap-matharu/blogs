@@ -1,7 +1,7 @@
 
 <h1 align="center">Blogs</h1>
 
-<img src="https://github.com/gurupratap-matharu/midware/blob/master/staticfiles/img/hero.jpg" alt="drawing" width="1920"/>
+<img src="https://github.com/gurupratap-matharu/blogs/blob/master/staticfiles/img/hero.jpg" alt="drawing" width="1920"/>
 
 ## LIVE
 
