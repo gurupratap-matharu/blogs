@@ -3,10 +3,10 @@
 {% block title %}Share a post{% endblock title %}
 
 {% block content %}
-<h1>Share "{{ post.title }}" by e-mail</h1>
+<h1>Share by e-mail</h1>
 <form action="" method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit">Send E-mail</button>
+    <input type="submit"></input>
 </form>
 {% endblock content %}
