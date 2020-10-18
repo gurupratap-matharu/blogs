@@ -29,24 +29,27 @@
         <div class="sticky-alerts"></div>
 
         <!-- Navbar -->
-        <nav class="navbar">
-            <button class="btn btn-light" type="button" onclick="toggleDemo()">
+        <nav class="navbar justify-content-between">
+            <div class="navbar-content">
+                <button class="btn btn-light" type="button" onclick="halfmoon.toggleSidebar()">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle sidebar</span> <!-- sr-only = show only on screen readers -->
+                </button>
+            </div>
+            <!-- Navbar brand -->
+            <a href="#" class="navbar-brand">
+                Blog
+            </a>
+            <button class="btn btn-action" type="button" onclick="toggleDemo()">
                 <i class="far fa-moon" aria-hidden="true"></i>
+                <span class="sr-only">Toggle DarkMode</span> <!-- sr-only = show only on screen readers -->
+
             </button>
         </nav>
-
-        <!-- Sidebar overlay -->
-        <div class="sidebar-overlay" onclick="halfmoon.toggleSidebar()"></div>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-menu">
-                <!-- Sidebar brand -->
-                <a href="#" class="sidebar-brand">
-                    <span class="sidebar-icon">
-                        <i class="fa fa-pen-fancy" aria-hidden="true"></i></span>
-                    Blog
-                </a>
                 <!-- Sidebar content with the search box -->
                 <div class="sidebar-content">
                     <input type="text" class="form-control" placeholder="Search">
