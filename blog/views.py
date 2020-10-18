@@ -55,7 +55,7 @@ class PostDetailView(FormMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["comments"] = Post.comments.filter(active=True)
+        context["comments"] = self.get_object().comments.filter(active=True)
         return context
 
 
