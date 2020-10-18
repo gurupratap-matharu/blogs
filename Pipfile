@@ -11,6 +11,7 @@ black = "*"
 django = "*"
 django-extensions = "*"
 django-crispy-forms = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"
