@@ -15,6 +15,7 @@ whitenoise = "*"
 dj-database-url = "*"
 gunicorn = "*"
 psycopg2-binary = "==2.8.3"
+factory-boy = "*"
 
 [requires]
 python_version = "3.8"
