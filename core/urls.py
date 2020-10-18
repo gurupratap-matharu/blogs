@@ -22,7 +22,7 @@ urlpatterns = [
     # 3rd party
     path("accounts/", include("allauth.urls")),
     # local apps
-    path("", include("pages.urls", namespace="pages")),
+    path("", include("pages.urls")),
     path("blog/", include("blog.urls", namespace="blog")),
-    path("profile/", include("users.urls", namespace="profile")),
+    path("profile/", include("users.urls")),
 ]
