@@ -14,6 +14,7 @@ django-crispy-forms = "*"
 whitenoise = "*"
 dj-database-url = "*"
 gunicorn = "*"
+psycopg2-binary = "==2.8.3"
 
 [requires]
 python_version = "3.8"
