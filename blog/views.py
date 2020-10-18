@@ -2,12 +2,12 @@ import logging
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, FormView, ListView
 from django.views.generic.edit import FormMixin
 
 from blog.forms import CommentForm, EmailPostForm
-from blog.models import Post
+from blog.models import Comment, Post
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +52,11 @@ class PostDetailView(FormMixin, DetailView):
             publish__month=self.kwargs["month"],
             publish__day=self.kwargs["day"],
         )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["comments"] = Post.comments.filter(active=True)
+        return context
 
 
 class PostShare(SuccessMessageMixin, FormView):

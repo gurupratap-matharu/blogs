@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "django_extensions",
     # Local
+    "pages.apps.PagesConfig",
     "blog.apps.BlogConfig",
 ]
 
