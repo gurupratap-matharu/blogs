@@ -3,7 +3,7 @@
 {% block title %}{{ post.title }}{% endblock title %}
 
 {% block content %}
-<div class="card p-0">
+<div class="content">
     <div class="content">
         <h2 class="content-title">{{ post.title }}</h2>
         <p>Published {{ post.publish }} by {{ post.author }}</p>
@@ -15,12 +15,17 @@
     </div>
     <hr>
     <div class="content">
-        <h2 class="content-title">Comments</h2>
+        <div class="d-flex justify-content-between">
+            <h2 class="content-title">Comments</h2>
 
-        {% with comments.count as total_comments %}
-        {{ total_comments }}
-        {% endwith %}
+            {% with comments.count as total_comments %}
+            {{ total_comments }}
+            {% endwith %}
+
+        </div>
+
         {% for comment in comments %}
+        <small class="text-muted">{{ comment.name }} {{ comment.created }}</small>
         {{ comment.body|linebreaks }}
         {% empty %}
         There are no comments yet.
