@@ -16,6 +16,7 @@ dj-database-url = "*"
 gunicorn = "*"
 psycopg2-binary = "==2.8.3"
 factory-boy = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.8"
