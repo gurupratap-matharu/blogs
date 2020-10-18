@@ -1,5 +1,11 @@
+import logging
+
 from django import forms
 from django.core.mail import send_mail
+
+from blog.models import Comment
+
+logger = logging.getLogger(__name__)
 
 
 class EmailPostForm(forms.Form):
@@ -21,6 +27,7 @@ class EmailPostForm(forms.Form):
             from_name,
             comments,
         )
+        logger.info("sending mail for sharing post...")
         send_mail(
             subject=subject,
             message=message,
@@ -28,3 +35,9 @@ class EmailPostForm(forms.Form):
             recipient_list=[to_email],
             fail_silently=False,
         )
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ("name", "email", "body")
