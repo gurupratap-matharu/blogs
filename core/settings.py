@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "django_countries",
     "django_extensions",
+    "taggit",
     # Local
     "users.apps.UsersConfig",
     "pages.apps.PagesConfig",
