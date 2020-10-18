@@ -3,45 +3,41 @@
 {% block title %}{{ post.title }}{% endblock title %}
 
 {% block content %}
-<div class="content">
-    <h2 class="content-title">{{ post.title }}</h2>
-    <p>Published {{ post.publish }} by {{ post.author }}</p>
-    {{ post.body|linebreaks }}
-    <a href="{% url 'blog:post_share' post.id %}" class="btn">
-        <i class="fa fa-share" aria-hidden="true"></i>
-        Share
-    </a>
+<div class="card p-0">
+    <div class="content">
+        <h2 class="content-title">{{ post.title }}</h2>
+        <p>Published {{ post.publish }} by {{ post.author }}</p>
+        {{ post.body|linebreaks }}
+        <a href="{% url 'blog:post_share' post.id %}" class="btn">
+            <i class="fa fa-share" aria-hidden="true"></i>
+            Share
+        </a>
+    </div>
+    <hr>
+    <div class="content">
+        <h2 class="content-title">Comments</h2>
+
+        {% with comments.count as total_comments %}
+        {{ total_comments }}
+        {% endwith %}
+        {% for comment in comments %}
+        {{ comment.body|linebreaks }}
+        {% empty %}
+        There are no comments yet.
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="content">
+        <h2 class="content-title">
+            Add a new comment
+        </h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
 </div>
 
-<hr>
 
-<h2 class="content-title">Comments</h2>
-
-{% with comments.count as total_comments %}
-{{ total_comments }}
-{% endwith %}
-
-<hr>
-
-{% for comment in comments %}
-<div class="content">
-    {{ comment.body|linebreaks }}
-</div>
-{% empty %}
-<div class="content">
-    There are no comments yet.
-</div>
-{% endfor %}
-
-<hr>
-<div class="content">
-    <h2 class="content-title">
-        Add a new comment
-    </h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-</div>
 {% endblock content %}
