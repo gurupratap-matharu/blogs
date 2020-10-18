@@ -18,6 +18,7 @@ psycopg2-binary = "==2.8.3"
 factory-boy = "*"
 django-allauth = "*"
 django-countries = "*"
+django-taggit = "==1.2.0"
 
 [requires]
 python_version = "3.8"
