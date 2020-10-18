@@ -10,12 +10,29 @@
 </head>
 
 <body>
-    <div>
-        {% block content %}{% endblock content %}
-    </div>
-    <div>
-        <h2>My Blog</h2>
-        <p>This is my blog</p>
+    <!-- Page wrapper with navbar, sidebar, navbar fixed bottom, and sticky alerts (toasts) -->
+    <div class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom"
+        data-sidebar-type="overlayed-sm-and-down">
+        <!-- Sticky alerts (toasts), empty container -->
+        <div class="sticky-alerts"></div>
+        <!-- Navbar -->
+        <nav class="navbar">
+            ...
+        </nav>
+        <!-- Sidebar overlay -->
+        <div class="sidebar-overlay" onclick="halfmoon.toggleSidebar()"></div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            ...
+        </div>
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+            {% block content %}{% endblock content %}
+        </div>
+        <!-- Navbar fixed bottom -->
+        <nav class="navbar navbar-fixed-bottom">
+            ...
+        </nav>
     </div>
     <!-- Halfmoon JS -->
     <script src="{% static 'blogs/js/halfmoon.min.js' %}"></script>
