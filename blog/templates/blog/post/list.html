@@ -17,6 +17,7 @@
 </div>
 {% endfor %}
 
-{% include 'blog/pagination.html' with page=page_obj %}
-
+<div class="content">
+    {% include 'blog/pagination.html' with page=page_obj %}
+</div>
 {% endblock content %}
