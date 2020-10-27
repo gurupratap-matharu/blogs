@@ -14,14 +14,21 @@ logger = logging.getLogger(__name__)
 
 
 class PostListView(ListView):
-    queryset = Post.published.all()
-    paginate_by = 3
+    model = Post
     template_name = "blog/post/list.html"
     context_object_name = "posts"
+    paginate_by = 3
 
     def get_queryset(self):
-        logger.info(self.kwargs["tag_slug"])
-        return super().get_queryset()
+        queryset = super().get_queryset()
+        tag_slug = self.kwargs.get("tag_slug")
+
+        if tag_slug:
+            logger.info("tag_slug: %s ", tag_slug)
+            tag = get_object_or_404(Tag, slug=tag_slug)
+            queryset = queryset.filter(tags__in=[tag])
+
+        return queryset
 
 
 class PostDetailView(FormMixin, DetailView):
