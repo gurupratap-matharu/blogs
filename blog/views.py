@@ -5,9 +5,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, FormView, ListView
 from django.views.generic.edit import FormMixin
+from taggit.models import Tag
 
 from blog.forms import CommentForm, EmailPostForm
-from blog.models import Comment, Post
+from blog.models import Post
 
 logger = logging.getLogger(__name__)
 
@@ -17,6 +18,10 @@ class PostListView(ListView):
     paginate_by = 3
     template_name = "blog/post/list.html"
     context_object_name = "posts"
+
+    def get_queryset(self):
+        logger.info(self.kwargs["tag_slug"])
+        return super().get_queryset()
 
 
 class PostDetailView(FormMixin, DetailView):
