@@ -164,6 +164,10 @@ LOGGING = {
     },
 }
 
+SHELL_PLUS_IMPORTS = [
+    "from users.factories import UserFactory",
+    "from blog.tests.factories import PostFactory",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
