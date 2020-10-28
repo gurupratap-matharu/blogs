@@ -18,6 +18,7 @@ class PostListView(ListView):
     template_name = "blog/post/list.html"
     context_object_name = "posts"
     paginate_by = 3
+    tag = None
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -25,10 +26,15 @@ class PostListView(ListView):
 
         if tag_slug:
             logger.info("tag_slug: %s ", tag_slug)
-            tag = get_object_or_404(Tag, slug=tag_slug)
-            queryset = queryset.filter(tags__in=[tag])
+            self.tag = get_object_or_404(Tag, slug=tag_slug)
+            queryset = queryset.filter(tags__in=[self.tag])
 
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["tag"] = self.tag
+        return context
 
 
 class PostDetailView(FormMixin, DetailView):
