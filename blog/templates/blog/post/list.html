@@ -2,6 +2,13 @@
 {% block title %}Blog{% endblock title %}
 
 {% block content %}
+
+{% if tag %}
+<div class="content">
+    <span class="badge badge-pill">{{ tag.name }}</span>
+</div>
+{% endif %}
+
 {% for post in posts %}
 <div class="content">
     <div class="card">
@@ -10,6 +17,13 @@
                 {{ post.title }}
             </a>
         </h2>
+
+        {% for tag in post.tags.all %}
+        <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+            <span class="badge badge-pill">{{ tag.name }}</span>
+        </a>
+        {% endfor %}
+
         <p>Tags: {{ post.tags.all|join:", " }}</p>
         <p>Published {{ post.publish }} by {{ post.author }}</p>
         <p>{{ post.body|truncatewords:30|linebreaks }}</p>
