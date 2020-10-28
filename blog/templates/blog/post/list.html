@@ -17,14 +17,16 @@
                 {{ post.title }}
             </a>
         </h2>
+        <div class="container mb-2">
 
-        {% for tag in post.tags.all %}
-        <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
-            <span class="badge badge-pill">{{ tag.name }}</span>
-        </a>
-        {% endfor %}
+            {% for tag in post.tags.all %}
+            <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                <span class="badge badge-pill">{{ tag.name }}</span>
+            </a>
+            {% endfor %}
+        </div>
 
-        <p>Published {{ post.publish }} by {{ post.author }}</p>
+        <small class="text-muted">Published {{ post.publish }} by {{ post.author }}</small>
         <p>{{ post.body|truncatewords:30|linebreaks }}</p>
     </div>
 </div>
