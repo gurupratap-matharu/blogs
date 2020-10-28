@@ -24,7 +24,6 @@
         </a>
         {% endfor %}
 
-        <p>Tags: {{ post.tags.all|join:", " }}</p>
         <p>Published {{ post.publish }} by {{ post.author }}</p>
         <p>{{ post.body|truncatewords:30|linebreaks }}</p>
     </div>
