@@ -1,4 +1,5 @@
-<!-- Sidebar -->
+{% load blog_tags %}
+!-- Sidebar -->
 <div class="sidebar">
     <div class="sidebar-menu">
         <!-- Sidebar content with the search box -->
@@ -21,13 +22,17 @@
             CLI commands
         </a>
         <br />
-        <h5 class="sidebar-title">Components</h5>
+        <h5 class="sidebar-title">Latest Posts</h5>
+        <div class="sidebar-divider"></div>
+        {% show_latest_posts 3 %}
+        <br>
+        <h5 class="sidebar-title">Stats</h5>
         <div class="sidebar-divider"></div>
         <a href="#" class="sidebar-link sidebar-link-with-icon">
             <span class="sidebar-icon">
-                <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                <i class="fa fa-clipboard" aria-hidden="true"></i>
             </span>
-            File explorer
+            {% total_posts %} posts total
         </a>
         <a href="#" class="sidebar-link sidebar-link-with-icon">
             <span class="sidebar-icon">
