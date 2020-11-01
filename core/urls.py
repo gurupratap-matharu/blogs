@@ -13,12 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from blog.sitemaps import PostSiteMap
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
+
+sitemaps = {
+    "posts": PostSiteMap,
+}
 
 urlpatterns = [
     # django administration
     path("dj-admin/", admin.site.urls),
+    # Site map
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
     # 3rd party
     path("accounts/", include("allauth.urls")),
     # local apps
