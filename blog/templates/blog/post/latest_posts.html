@@ -1,0 +1,8 @@
+{% for post in latest_posts %}
+<a href="{{ post.get_absolute_url }}" class="sidebar-link sidebar-link-with-icon">
+    <span class="sidebar-icon">
+        <i class="fa fa-book-open" aria-hidden="true"></i>
+    </span>
+    {{ post.title }}
+</a>
+{% endfor %}
