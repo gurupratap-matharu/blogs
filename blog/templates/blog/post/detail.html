@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+{% load 'blog_tags' %}
 {% block title %}{{ post.title }}{% endblock title %}
 
 {% block content %}
@@ -16,7 +16,7 @@
         </div>
 
         <p>Published {{ post.publish }} by {{ post.author }}</p>
-        {{ post.body|linebreaks }}
+        {{ post.body|markdown }}
         <a href="{% url 'blog:post_share' post.id %}" class="btn">
             <i class="fa fa-share" aria-hidden="true"></i>
             Share
