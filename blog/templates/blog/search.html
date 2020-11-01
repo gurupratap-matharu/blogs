@@ -32,6 +32,12 @@
         <p>{{ post.body|markdown|truncatewords_html:30 }}</p>
     </div>
 </div>
+{% empty %}
+<div class="content">
+    <div class="card">
+        <p>There are no search results for your query.</p>
+    </div>
+</div>
 {% endfor %}
 
 <div class="content">
