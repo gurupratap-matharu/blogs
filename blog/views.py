@@ -2,6 +2,7 @@ import logging
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, FormView, ListView
 from django.views.generic.edit import FormMixin
@@ -17,7 +18,7 @@ class PostListView(ListView):
     model = Post
     template_name = "blog/post/list.html"
     context_object_name = "posts"
-    paginate_by = 3
+    paginate_by = 9
     tag = None
 
     def get_queryset(self):
@@ -74,7 +75,19 @@ class PostDetailView(FormMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["comments"] = self.get_object().comments.filter(active=True)
+        context["similar_posts"] = self.get_similar_posts()
         return context
+
+    def get_similar_posts(self):
+        post = self.get_object()
+        post_tags_ids = post.tags.values_list("id", flat=True)
+        similar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(
+            id=post.id
+        )
+        similar_posts = similar_posts.annotate(same_tags=Count("tags")).order_by(
+            "-same_tags", "-publish"
+        )[:4]
+        return similar_posts
 
 
 class PostShare(SuccessMessageMixin, FormView):
