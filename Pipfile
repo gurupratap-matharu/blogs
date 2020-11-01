@@ -19,6 +19,7 @@ factory-boy = "*"
 django-allauth = "*"
 django-countries = "*"
 django-taggit = "==1.2.0"
+markdown = "==3.2.1"
 
 [requires]
 python_version = "3.8"
