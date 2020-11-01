@@ -109,8 +109,14 @@ class PostShare(SuccessMessageMixin, FormView):
 class PostSearchView(ListView):
     model = Post
     context_object_name = "post_list"
-    template_name = "blog/post/search.html"
+    template_name = "blog/search.html"
+    paginate_by = 9
 
     def get_queryset(self):
         query = self.request.GET.get("q")
         return Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["query"] = self.request.GET.get("q")
+        return context
