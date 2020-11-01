@@ -4,7 +4,9 @@
     <div class="sidebar-menu">
         <!-- Sidebar content with the search box -->
         <div class="sidebar-content">
-            <input type="text" class="form-control" placeholder="Search">
+            <form action="{% url 'blog:post_search' %}" method="GET">
+                <input name="q" type="text" class="form-control" placeholder="Search" aria-label="Search">
+            </form>
         </div>
         <!-- Sidebar links (with icons) and titles -->
         <h5 class="sidebar-title">Getting started</h5>

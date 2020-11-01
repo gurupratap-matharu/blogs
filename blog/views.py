@@ -2,7 +2,7 @@ import logging
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, FormView, ListView
 from django.views.generic.edit import FormMixin
@@ -104,3 +104,13 @@ class PostShare(SuccessMessageMixin, FormView):
 
         form.send_email(title=post.title, uri=uri)
         return super().form_valid(form)
+
+
+class PostSearchView(ListView):
+    model = Post
+    context_object_name = "post_list"
+    template_name = "blog/post/search.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        return Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
