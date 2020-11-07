@@ -17,9 +17,11 @@ from blog.sitemaps import PostSiteMap
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
+from pages.sitemaps import StaticViewSitemap
 
 sitemaps = {
     "posts": PostSiteMap,
+    "static": StaticViewSitemap,
 }
 
 urlpatterns = [
