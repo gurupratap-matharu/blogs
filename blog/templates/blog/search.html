@@ -7,7 +7,7 @@
 
 {% if query %}
 <div class="content">
-    <h2 class="content-title">Showing results for "{{ query }}"</h2>
+    <h2 class="content-title">Found {{ post_list.count }} result{{ post_list.count|pluralize }} for "{{ query }}"</h2>
 </div>
 {% endif %}
 
