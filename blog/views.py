@@ -2,7 +2,8 @@ import logging
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import Count, Q
+from django.contrib.postgres.search import SearchVector
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, FormView, ListView
 from django.views.generic.edit import FormMixin
@@ -114,7 +115,9 @@ class PostSearchView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get("q")
-        return Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+        return Post.published.annotate(
+            search=SearchVector("title", "body"),
+        ).filter(search=query)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
